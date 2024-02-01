@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import React, {useState, useEffect, useMemo} from 'react';
+import {useForm} from 'react-hook-form';
 
-const DeliveryForm = ({ itemID }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+const DeliveryForm = ({itemID}) => {
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const submissionAudio = new Audio('./submission.mp3'); // path to your audio file
+    const submissionAudio = useMemo(() => new Audio('./submission.mp3'), []);
 
     useEffect(() => {
         if (isSubmitted) {
