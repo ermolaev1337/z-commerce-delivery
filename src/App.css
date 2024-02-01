@@ -1,38 +1,237 @@
-.App {
-  text-align: center;
+:root {
+    /* Define color scheme */
+    --background-color: #0a0a0a;
+    --primary-color: #21d4fd;
+    --secondary-color: #b721ff;
+    --text-color: #e7e7e7;
+    --form-background-color: #1e1e1e;
+    --error-color: #ff2d55;
+
+    /* Define font sizes */
+    --font-large: 1.5rem;
+    --font-medium: 1rem;
+    --font-small: 0.85rem;
+
+    /* Border radius */
+    --border-radius: 5px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+form {
+    display: grid;
+    grid-gap: 1rem;
+    padding: 2rem;
+    background-color: var(--form-background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 5rem auto;
+    transition: transform 0.2s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(33, 212, 253, 0.5);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form label {
+    font-size: var(--font-medium);
+    margin-bottom: 0.25rem;
+    color: var(--text-color);
+}
+
+form input {
+    padding: 0.75rem;
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-size: var(--font-medium);
+    transition: all 0.3s ease-in-out;
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+form input[readonly] {
+    background-color: #333; /* Darker background to stand out */
+    color: #bbb; /* Light grey color to indicate it's not active */
+    cursor: not-allowed; /* Shows a 'no action' cursor when hovering */
+    border-color: #555; /* Different border to distinguish it from editable fields */
+}
+
+form input[type='submit'] {
+    cursor: pointer;
+    background-image: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--background-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+}
+
+form input[type='submit']:hover {
+    background-image: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+}
+
+form p {
+    color: var(--error-color);
+    font-size: var(--font-small);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+
+    form label {
+        font-size: var(--font-small);
+    }
+
+    form input {
+        font-size: var(--font-small);
+    }
+}
+
+
+button {
+    padding: 10px 15px;
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #45a049; /* A slightly darker green on hover */
+}
+
+button:before {
+    content: '\1F512'; /* Unicode for a closed lock */
+    display: inline-block;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+button span {
+    display: inline-block;
+    padding-left: 30px; /* Make space for the lock icon */
+}
+
+.submission-confirmation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    padding: 40px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #4CAF50;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
+    color: #4CAF50;
+    animation: appear 0.5s ease-out forwards, glow 1.5s infinite alternate;
+    z-index: 10;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px #4CAF50;
+    }
+    to {
+        box-shadow: 0 0 40px #4CAF50;
+    }
+}
+
+.submission-confirmation h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px #4CAF50;
+}
+
+.submission-confirmation p {
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 5px #4CAF50;
+}
+
+/* Additional global styles */
+body {
+    background-color: #121212; /* Dark background for the futuristic theme */
+    color: #ffffff;
+    font-family: 'Orbitron', sans-serif; /* A futuristic font */
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Error message style */
+.form-error-message {
+    height: 20px; /* Reserve space for the error message */
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #ff6161; /* Red color for errors */
+    font-size: 0.85rem;
+    visibility: hidden; /* Hide it by default */
+}
+
+/* When there is an error, make it visible */
+.form-error-message.active {
+    visibility: visible;
 }

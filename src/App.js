@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import DeliveryForm from './DeliveryForm';
+import "./App.css";
 
-function App() {
+
+const App = () => {
+  // Replace with the actual item ID passed from the e-commerce platform
+  const itemID = '12345';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <DeliveryForm itemID={itemID} />
+      </div>
   );
 }
 
