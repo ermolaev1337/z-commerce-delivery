@@ -4,14 +4,13 @@ import "./App.css";
 
 
 const App = () => {
-  // Replace with the actual item ID passed from the e-commerce platform
-  const itemID = '12345';
+    const searchParams = new URLSearchParams(document.location.search)
 
-  return (
-      <div className="App">
-        <DeliveryForm itemID={itemID} />
-      </div>
-  );
+    return (
+        <div className="App">
+            <DeliveryForm itemID={searchParams.get("id") }/>
+        </div>
+    );
 }
 
 export default App;
