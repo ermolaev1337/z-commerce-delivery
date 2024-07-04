@@ -8,7 +8,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <DeliveryForm itemID={searchParams.get("id") }/>
+            <DeliveryForm id={searchParams.get("id") }/>
         </div>
     );
 }

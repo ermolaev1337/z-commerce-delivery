@@ -1,0 +1,17 @@
+services:
+
+  delivery:
+    container_name: delivery
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 1337:3000
+    command: yarn run start
+    volumes:
+      - ./src:/app/src
+    networks:
+      - heimdall-network
+
+networks:
+  heimdall-network:
+    external: true
