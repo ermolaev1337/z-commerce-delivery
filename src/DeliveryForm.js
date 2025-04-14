@@ -5,8 +5,8 @@ import axios from 'axios';
 
 import useWebSocket from 'react-use-websocket';
 
-const WS_URL = 'ws://localhost:27777';
-const CONTROLLER_URL = 'localhost:12222';
+const WS_URL = 'ws://10.240.5.163:27777';
+const CONTROLLER_URL = '10.240.5.163:12222';
 
 
 const DeliveryForm = ({id}) => {
@@ -29,7 +29,7 @@ const DeliveryForm = ({id}) => {
             //@ts-ignore
             console.debug("connectionInvitation.data", connectionInvitation.data)
             //@ts-ignore
-            window.open("http://localhost:19006?data=" + JSON.stringify(connectionInvitation.data), '_blank');
+            window.open("http://10.240.5.163:19006?data=" + JSON.stringify(connectionInvitation.data), '_blank');
         }
 
     };
